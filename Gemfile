@@ -11,6 +11,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rack-cors'
 
 gem 'devise_token_auth'
+gem 'devise_invitable'
 
 group :development, :test do
   gem 'seed-fu'
