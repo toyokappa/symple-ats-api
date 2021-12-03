@@ -33,3 +33,9 @@ services:
     command: /usr/src/app/bin/start_dev_server.sh
     depends_on:
       - mysql
+
+  smpt:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"

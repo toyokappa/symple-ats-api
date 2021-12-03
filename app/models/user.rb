@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  enum role: { viewer: 10, interviewer: 20, admin: 30 }
 end
