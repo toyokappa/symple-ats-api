@@ -1,0 +1,35 @@
+version: "3.7"
+
+volumes:
+  mysql-volume:
+  bundle-volume:
+
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "7706:3306"
+
+  rails:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/usr/src/app:cached
+      - bundle-volume:/usr/local/bundle 
+    environment:
+      RDB_HOSTNAME: mysql
+      RDB_USERNAME: root
+      BASIC_USER: user
+      BASIC_PASS: pass
+      MANUAL: $MANUAL
+      GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS
+    ports:
+      - "7700:3000"
+    command: /usr/src/app/bin/start_dev_server.sh
+    depends_on:
+      - mysql
