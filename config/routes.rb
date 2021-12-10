@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :users, only: %i[index]
   resources :positions, only: %i[index create update]
   resources :media, only: %i[index create update]
+  resources :recruitment_selections, only: %i[index]
 end
