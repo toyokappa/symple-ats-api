@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  category: 
+  automation: 
+  apply_path: MyString
+
+two:
+  name: MyString
+  category: 
+  automation: 
+  apply_path: MyString
