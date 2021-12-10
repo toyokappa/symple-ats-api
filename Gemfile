@@ -7,6 +7,7 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'mysql2', '~> 0.5'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'blueprinter'
 
 gem 'rack-cors'
 
