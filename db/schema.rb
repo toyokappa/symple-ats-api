@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_10_091328) do
+ActiveRecord::Schema.define(version: 2021_12_10_122159) do
+
+  create_table "candidates", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "recruitment_started_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.bigint "recruitment_selection_id", null: false
+    t.bigint "recruiter_id"
+    t.bigint "medium_id"
+    t.bigint "position_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["medium_id"], name: "index_candidates_on_medium_id"
+    t.index ["position_id"], name: "index_candidates_on_position_id"
+    t.index ["recruiter_id"], name: "index_candidates_on_recruiter_id"
+    t.index ["recruitment_selection_id"], name: "index_candidates_on_recruitment_selection_id"
+  end
 
   create_table "media", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
@@ -29,22 +44,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_091328) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "recruitment_projects", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "recruitment_selections", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name"
-    t.integer "position"
-    t.bigint "recruitment_project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["recruitment_project_id"], name: "index_recruitment_selections_on_recruitment_project_id"
-  end
-
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "recruiters", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -65,11 +65,27 @@ ActiveRecord::Schema.define(version: 2021_12_10_091328) do
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+    t.index ["confirmation_token"], name: "index_recruiters_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_recruiters_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_recruiters_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_recruiters_on_uid_and_provider", unique: true
   end
 
+  create_table "recruitment_projects", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recruitment_selections", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "position"
+    t.bigint "recruitment_project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recruitment_project_id"], name: "index_recruitment_selections_on_recruitment_project_id"
+  end
+
+  add_foreign_key "candidates", "recruitment_selections"
   add_foreign_key "recruitment_selections", "recruitment_projects"
 end

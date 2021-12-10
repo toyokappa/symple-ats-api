@@ -1,4 +1,4 @@
-class UserBlueprint < Blueprinter::Base
+class RecruiterBlueprint < Blueprinter::Base
   identifier :id
 
   view :normal do

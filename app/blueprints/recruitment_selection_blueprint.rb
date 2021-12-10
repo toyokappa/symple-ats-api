@@ -3,8 +3,6 @@ class RecruitmentSelectionBlueprint < Blueprinter::Base
 
   view :normal do
     fields :name, :position
-    field :list do
-      []
-    end
+    association :candidates, blueprint: CandidateBlueprint, view: :normal
   end
 end
