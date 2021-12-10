@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 2021_12_10_051445) do
   create_table "media", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.integer "category"
-    t.integer "automation"
-    t.string "apply_path"
+    t.integer "automation", default: 10, null: false
+    t.string "apply_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
