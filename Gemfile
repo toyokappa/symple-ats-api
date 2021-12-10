@@ -12,7 +12,7 @@ gem 'blueprinter'
 gem 'rack-cors'
 
 gem 'devise_token_auth'
-gem 'devise_invitable'
+gem 'acts_as_list'
 
 group :development, :test do
   gem 'seed-fu'
