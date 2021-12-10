@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :positions, only: %i[index create update]
   resources :media, only: %i[index create update]
   resources :recruitment_selections, only: %i[index]
+  resources :candidates, only: %i[create]
 end
