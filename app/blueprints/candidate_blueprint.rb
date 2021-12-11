@@ -2,7 +2,7 @@ class CandidateBlueprint < Blueprinter::Base
   identifier :id
 
   view :normal do
-    fields :name, :recruitment_started_at, :recruitment_selection_id
+    fields :name, :recruitment_selection_id
     association :recruiter, blueprint: RecruiterBlueprint, view: :normal
     association :medium, blueprint: MediumBlueprint, view: :normal
     association :position, blueprint: PositionBlueprint, view: :normal

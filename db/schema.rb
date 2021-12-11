@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_10_122159) do
+ActiveRecord::Schema.define(version: 2021_12_11_203126) do
 
   create_table "candidates", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
-    t.datetime "recruitment_started_at", default: -> { "CURRENT_TIMESTAMP" }
     t.bigint "recruitment_selection_id", null: false
     t.bigint "recruiter_id"
     t.bigint "medium_id"
@@ -71,6 +70,17 @@ ActiveRecord::Schema.define(version: 2021_12_10_122159) do
     t.index ["uid", "provider"], name: "index_recruiters_on_uid_and_provider", unique: true
   end
 
+  create_table "recruitment_histories", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.datetime "selected_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.integer "result"
+    t.bigint "recruitment_selection_id", null: false
+    t.bigint "candidate_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["candidate_id"], name: "index_recruitment_histories_on_candidate_id"
+    t.index ["recruitment_selection_id"], name: "index_recruitment_histories_on_recruitment_selection_id"
+  end
+
   create_table "recruitment_projects", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -88,5 +98,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_122159) do
   end
 
   add_foreign_key "candidates", "recruitment_selections"
+  add_foreign_key "recruitment_histories", "candidates"
+  add_foreign_key "recruitment_histories", "recruitment_selections"
   add_foreign_key "recruitment_selections", "recruitment_projects"
 end
