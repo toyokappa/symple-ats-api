@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_122159) do
 
   create_table "recruitment_selections", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
+    t.integer "selection_type"
     t.integer "position"
     t.bigint "recruitment_project_id", null: false
     t.datetime "created_at", precision: 6, null: false
