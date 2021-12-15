@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_203126) do
 
   create_table "candidates", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
+    t.integer "list_position"
     t.bigint "recruitment_selection_id", null: false
     t.bigint "recruiter_id"
     t.bigint "medium_id"

@@ -2,6 +2,7 @@ class CreateCandidates < ActiveRecord::Migration[6.1]
   def change
     create_table :candidates do |t|
       t.string :name
+      t.integer :list_position
       t.references :recruitment_selection, null: false, foreign_key: true
       t.bigint :recruiter_id
       t.bigint :medium_id

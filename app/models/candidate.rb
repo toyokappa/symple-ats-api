@@ -4,4 +4,6 @@ class Candidate < ApplicationRecord
   belongs_to :recruiter, optional: true
   belongs_to :medium, optional: true
   belongs_to :position, optional: true
+
+  acts_as_list scope: :recruitment_selection, column: :list_position
 end

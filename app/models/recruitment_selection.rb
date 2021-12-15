@@ -1,5 +1,5 @@
 class RecruitmentSelection < ApplicationRecord
-  has_many :candidates, dependent: :destroy
+  has_many :candidates, -> { order(:list_position) }, dependent: :destroy
   has_many :recruitment_histories, dependent: :destroy
 
   belongs_to :recruitment_project
