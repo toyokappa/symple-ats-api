@@ -6,27 +6,32 @@ class MediaController < ApplicationController
   end
 
   def create
+    return render json: status_400, status: 400 if medium_params.blank?
+
     medium = Medium.new(medium_params)
     if medium.save
       render json: MediumBlueprint.render(medium, view: :normal)
     else
-      render json: { status: 400, message: '入力エラーです' }, status: 400
+      render json: status_400, status: 400
     end
   end
 
   def update
-    medium = Medium.find(params[:id])
+    medium = Medium.find_by(id: params[:id])
+    return render json: status_404, status: 404 if medium.blank?
+    return render json: status_400, status: 400 if medium_params.blank?
+
     if medium.update(medium_params)
       render json: MediumBlueprint.render(medium, view: :normal)
     else
-      render json: { status: 400, message: '入力エラーです' }, status: 400
+      render json: status_400, status: 400
     end
   end
 
   private
 
   def medium_params
-    params.require(:medium).permit(
+    params.fetch(:medium, {}).permit(
       :name,
       :category, 
     )
