@@ -2,11 +2,6 @@ class CandidatesController < ApplicationController
   def create
     candidate = Candidate.new(candidate_params)
 
-    # 選考履歴が必要な分作成する
-    params[:require_selection_ids]&.each do |selection_id|
-      candidate.recruitment_histories.find_or_initialize_by(recruitment_selection_id: selection_id)
-    end
-
     if candidate.save
       render json: CandidateBlueprint.render(candidate, view: :normal)
     else

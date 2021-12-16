@@ -4,6 +4,15 @@ class Candidate < ApplicationRecord
   belongs_to :recruiter, optional: true
   belongs_to :medium, optional: true
   belongs_to :position, optional: true
+  has_one :recruitment_project, through: :recruitment_selection
 
   acts_as_list scope: :recruitment_selection, column: :list_position
+
+  before_save {
+    add_history_selections = recruitment_project.recruitment_selections.where(position: ..recruitment_selection.position)
+
+    add_history_selections.each do |selection|
+      recruitment_histories.find_or_initialize_by(recruitment_selection: selection)
+    end
+  }
 end
