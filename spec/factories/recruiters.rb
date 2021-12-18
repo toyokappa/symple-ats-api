@@ -26,9 +26,9 @@
 #
 FactoryBot.define do
   factory :recruiter do
-    name { "田中 太郎" }
-    nickname { "tanaka" }
-    email { "tanaka@symple.com" }
+    sequence(:name) {|n| "リクルーター#{n}" }
+    sequence(:nickname) {|n| "recruiter#{n}" }
+    sequence(:email) {|n| "recruiter#{n}@symple.com" }
     password { "123456" }
     role { [10, 20, 30].sample }
     level { [*1..3].sample }
