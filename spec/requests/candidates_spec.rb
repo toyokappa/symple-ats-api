@@ -20,7 +20,7 @@ RSpec.describe "Candidates", type: :request do
           }
         }
       end
-      it "新しいメディアの情報が返却されること" do
+      it "新しい候補者の情報が返却されること" do
         post "/candidates", params: params
         expect(response).to have_http_status(:success)
 
@@ -31,7 +31,7 @@ RSpec.describe "Candidates", type: :request do
     end
 
     context "パラメータがない状態で送信された場合" do
-      it "メディアが作成できない旨が返却されること" do
+      it "候補者が作成できない旨が返却されること" do
         post "/candidates"
         expect(response).to have_http_status(400)
       end
@@ -48,7 +48,7 @@ RSpec.describe "Candidates", type: :request do
       position: positions[0],
     ) }
 
-    context "メディアが存在する場合" do
+    context "候補者が存在する場合" do
       context "正しいパラメーターが送信された場合" do
         let(:params) do
           {
@@ -62,7 +62,7 @@ RSpec.describe "Candidates", type: :request do
           }
         end
 
-        it "更新されたメディアの情報が返却されること" do
+        it "更新された候補者の情報が返却されること" do
           put "/candidates/#{candidate.id}", params: params
 
           expect(response).to have_http_status(:success)
@@ -77,7 +77,7 @@ RSpec.describe "Candidates", type: :request do
       end
 
       context "パラメータがない状態で送信された場合" do
-        it "メディアが更新できない旨が返却されること" do
+        it "候補者が更新できない旨が返却されること" do
           put "/candidates/#{candidate.id}"
 
           expect(response).to have_http_status(400)
@@ -85,8 +85,8 @@ RSpec.describe "Candidates", type: :request do
       end
     end
 
-    context "メディアが存在しない場合" do
-      it "メディアが存在しない旨が返却されること" do
+    context "候補者が存在しない場合" do
+      it "候補者が存在しない旨が返却されること" do
         put "/candidates/#{candidate.id + 1 }"
 
         expect(response).to have_http_status(404)
