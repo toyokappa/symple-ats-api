@@ -1,4 +1,4 @@
-class MediumBlueprint < Blueprinter::Base
+class ChannelBlueprint < Blueprinter::Base
   identifier :id
 
   view :normal do

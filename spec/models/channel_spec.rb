@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: media
+# Table name: channels
 #
 #  id          :bigint           not null, primary key
 #  name        :string(255)
@@ -14,11 +14,11 @@
 #
 require "rails_helper"
 
-RSpec.describe Medium, type: :model do
+RSpec.describe Channel, type: :model do
   context "正しい情報がある場合" do
-    let(:medium) { build(:medium) }
+    let(:channel) { build(:channel) }
     it "有効である" do
-      expect(medium).to be_valid
+      expect(channel).to be_valid
     end
   end
 end

@@ -7,7 +7,7 @@
 #  list_position            :integer
 #  recruitment_selection_id :bigint           not null
 #  recruiter_id             :bigint
-#  medium_id                :bigint
+#  channel_id               :bigint
 #  position_id              :bigint
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
@@ -16,7 +16,7 @@ class Candidate < ApplicationRecord
   has_many :recruitment_histories, dependent: :destroy
   belongs_to :recruitment_selection
   belongs_to :recruiter, optional: true
-  belongs_to :medium, optional: true
+  belongs_to :channel, optional: true
   belongs_to :position, optional: true
   has_one :recruitment_project, through: :recruitment_selection
 

@@ -17,17 +17,17 @@ ActiveRecord::Schema.define(version: 2021_12_11_203126) do
     t.integer "list_position"
     t.bigint "recruitment_selection_id", null: false
     t.bigint "recruiter_id"
-    t.bigint "medium_id"
+    t.bigint "channel_id"
     t.bigint "position_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["medium_id"], name: "index_candidates_on_medium_id"
+    t.index ["channel_id"], name: "index_candidates_on_channel_id"
     t.index ["position_id"], name: "index_candidates_on_position_id"
     t.index ["recruiter_id"], name: "index_candidates_on_recruiter_id"
     t.index ["recruitment_selection_id"], name: "index_candidates_on_recruitment_selection_id"
   end
 
-  create_table "media", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "channels", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.integer "category"
     t.integer "automation", default: 10, null: false

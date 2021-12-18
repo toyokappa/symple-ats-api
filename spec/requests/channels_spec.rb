@@ -2,30 +2,30 @@
 
 require "rails_helper"
 
-RSpec.describe "Media", type: :request do
-  describe "GET /media" do
-    before { create_list(:medium, 10) }
+RSpec.describe "Channels", type: :request do
+  describe "GET /channels" do
+    before { create_list(:channel, 10) }
 
-    it "メディアの一覧が返却されること" do
-      get "/media"
+    it "チャネルの一覧が返却されること" do
+      get "/channels"
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body).length).to eq 10
     end
   end
 
-  describe "POST /media" do
+  describe "POST /channels" do
 
     context "正しいパラメーターが送信された場合" do
       let(:params) do
         {
-          medium: {
+          channel: {
             name: "Green",
             category: :scout,
           }
         }
       end
-      it "新しいメディアの情報が返却されること" do
-        post "/media", params: params
+      it "新しいチャネルの情報が返却されること" do
+        post "/channels", params: params
         expect(response).to have_http_status(:success)
 
         json = JSON.parse(response.body)
@@ -35,29 +35,29 @@ RSpec.describe "Media", type: :request do
     end
 
     context "パラメータがない状態で送信された場合" do
-      it "メディアが作成できない旨が返却されること" do
-        post "/media"
+      it "チャネルが作成できない旨が返却されること" do
+        post "/channels"
         expect(response).to have_http_status(400)
       end
     end
   end
 
-  describe "PUT /media/:id" do
-    let!(:medium) { create(:medium, name: "Green", category: :scout) }
+  describe "PUT /channels/:id" do
+    let!(:channel) { create(:channel, name: "Green", category: :scout) }
 
-    context "メディアが存在する場合" do
+    context "チャネルが存在する場合" do
       context "正しいパラメーターが送信された場合" do
         let(:params) do
           {
-            medium: {
+            channel: {
               name: "Wantedly",
               category: :ad,
             }
           }
         end
 
-        it "更新されたメディアの情報が返却されること" do
-          put "/media/#{medium.id}", params: params
+        it "更新されたチャネルの情報が返却されること" do
+          put "/channels/#{channel.id}", params: params
 
           expect(response).to have_http_status(:success)
 
@@ -68,17 +68,17 @@ RSpec.describe "Media", type: :request do
       end
 
       context "パラメータがない状態で送信された場合" do
-        it "メディアが更新できない旨が返却されること" do
-          put "/media/#{medium.id}"
+        it "チャネルが更新できない旨が返却されること" do
+          put "/channels/#{channel.id}"
 
           expect(response).to have_http_status(400)
         end
       end
     end
 
-    context "メディアが存在しない場合" do
-      it "メディアが存在しない旨が返却されること" do
-        put "/media/#{medium.id + 1 }"
+    context "チャネルが存在しない場合" do
+      it "チャネルが存在しない旨が返却されること" do
+        put "/channels/#{channel.id + 1 }"
 
         expect(response).to have_http_status(404)
       end

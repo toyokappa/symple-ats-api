@@ -6,7 +6,7 @@ RSpec.describe "Candidates", type: :request do
   let(:project) { create(:recruitment_project) }
   let(:selections) { create_list(:recruitment_selection, 4, recruitment_project: project) }
   let!(:recruiters) { create_list(:recruiter, 3) }
-  let!(:media) { create_list(:medium, 3) }
+  let!(:channels) { create_list(:channel, 3) }
   let!(:positions) { create_list(:position, 3) }
 
   describe "POST /candidates" do
@@ -44,7 +44,7 @@ RSpec.describe "Candidates", type: :request do
       name: "シンプル 太郎",
       recruitment_selection: selections[0],
       recruiter: recruiters[0],
-      medium: media[0],
+      channel: channels[0],
       position: positions[0],
     ) }
 
@@ -56,7 +56,7 @@ RSpec.describe "Candidates", type: :request do
               name: "シンプル 次郎",
               recruitment_selection_id: selections[1].id,
               recruiter_id: recruiters[2].id,
-              medium_id: media[2].id,
+              channel_id: channels[2].id,
               position_id: positions[2].id,
             }
           }
@@ -71,7 +71,7 @@ RSpec.describe "Candidates", type: :request do
           expect(json['name']).to eq "シンプル 次郎"
           expect(json['recruitmentSelectionId']).to eq selections[1].id
           expect(json['recruiter']['id']).to eq recruiters[2].id
-          expect(json['medium']['id']).to eq media[2].id
+          expect(json['channel']['id']).to eq channels[2].id
           expect(json['position']['id']).to eq positions[2].id
         end
       end

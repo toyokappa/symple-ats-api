@@ -30,7 +30,7 @@ class CandidatesController < ApplicationController
       :name,
       :recruitment_selection_id,
       :recruiter_id,
-      :medium_id,
+      :channel_id,
       :position_id,
     )
   end

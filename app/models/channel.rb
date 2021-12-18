@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
-# Table name: media
+# Table name: channels
 #
 #  id          :bigint           not null, primary key
 #  name        :string(255)
@@ -12,10 +10,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-FactoryBot.define do
-  factory :medium do
-    sequence(:name) {|n| "メディア#{n}" }
-    category { [10, 20, 30, 40, 50, 60].sample }
-    automation { [10, 20, 30].sample }
-  end
+class Channel < ApplicationRecord
+  enum category: { agent: 10, ad: 20, scout: 30, sns: 40, referral: 50, other: 60 }, _prefix: true
+  enum automation: { disable: 10, enable: 20, impossible: 30 }, _prefix: true
 end

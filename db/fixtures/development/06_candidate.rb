@@ -4,6 +4,6 @@ Candidate.seed_once do |c|
   c.list_position = 1
   c.recruitment_selection_id = 1
   c.recruiter_id = 1
-  c.medium_id = 1
+  c.channel_id = 1
   c.position_id = 1
 end

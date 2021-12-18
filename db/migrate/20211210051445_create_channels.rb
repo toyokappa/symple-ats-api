@@ -1,6 +1,6 @@
-class CreateMedia < ActiveRecord::Migration[6.1]
+class CreateChannels < ActiveRecord::Migration[6.1]
   def change
-    create_table :media do |t|
+    create_table :channels do |t|
       t.string :name
       t.integer :category
       t.integer :automation, default: 10, null: false
