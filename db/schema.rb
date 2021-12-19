@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_203126) do
   end
 
   create_table "recruitment_histories", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.datetime "selected_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "selected_at"
     t.integer "result"
     t.bigint "recruitment_selection_id", null: false
     t.bigint "candidate_id", null: false
