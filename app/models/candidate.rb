@@ -22,11 +22,23 @@ class Candidate < ApplicationRecord
 
   acts_as_list scope: :recruitment_selection, column: :list_position
 
-  before_save {
+  after_commit :create_or_update_recruitment_histories
+
+  private
+
+  def create_or_update_recruitment_histories
+    # 見送り、辞退の場合は直前の履歴は作成しないようにする
+    return if recruitment_selection.selection_type.to_sym.in? %i[failure decline]
+
     add_history_selections = recruitment_project.recruitment_selections.where(position: ..recruitment_selection.position)
 
-    add_history_selections.each do |selection|
-      recruitment_histories.find_or_initialize_by(recruitment_selection: selection)
+    RecruitmentHistory.transaction do
+      add_history_selections.each.with_index(1) do |selection, index|
+        history = recruitment_histories.find_or_initialize_by(recruitment_selection: selection)
+        # 自動で直前の選考まで合格ステータスとなる
+        history.result = :pass if index < add_history_selections.length
+        history.save!
+      end
     end
-  }
+  end
 end
