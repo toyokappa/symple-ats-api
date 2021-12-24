@@ -27,8 +27,11 @@ class RecruitmentProject < ApplicationRecord
 
   def chart_datasets
     datasets = [{ dataName: "全体", values: chart_values } ]
-    Channel.categories.each do |category, _|
-      datasets << { dataName: category, values: chart_values(category: category) }
+    Channel.enums_i18n(:category).each do |category, label|
+      values = chart_values(category: category)
+      next if values.compact.blank?
+
+      datasets << { dataName: label, values: values }
     end
 
     datasets

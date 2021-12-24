@@ -1,0 +1,10 @@
+ja:
+  enums:
+    channel:
+      category:
+        agent: エージェント
+        ad: 求人媒体
+        scout: スカウト
+        sns: SNS
+        referral: リファーラル
+        other: その他
