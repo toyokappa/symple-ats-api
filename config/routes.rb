@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :candidates, only: %i[create update] do
     resource :position, only: %i[update], module: :candidates
   end
+  resources :analytics, only: %i[index]
 end
