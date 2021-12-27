@@ -1,14 +1,16 @@
 class ChannelsController < ApplicationController
+  before_action :find_organization
+
   def index
     # TODO: Pagingについて考える
-    channnels = Channel.all
+    channnels = @organization.channels.all
     render json: ChannelBlueprint.render(channnels, view: :normal)
   end
 
   def create
     return render json: status_400, status: 400 if channel_params.blank?
 
-    channel = Channel.new(channel_params)
+    channel = @organization.channels.build(channel_params)
     if channel.save
       render json: ChannelBlueprint.render(channel, view: :normal)
     else
@@ -17,7 +19,7 @@ class ChannelsController < ApplicationController
   end
 
   def update
-    channel = Channel.find_by(id: params[:id])
+    channel = @organization.channels.find_by(id: params[:id])
     return render json: status_404, status: 404 if channel.blank?
     return render json: status_400, status: 400 if channel_params.blank?
 
@@ -29,6 +31,11 @@ class ChannelsController < ApplicationController
   end
 
   private
+
+  def find_organization
+    @organization = Organization.find_by(unique_id: params[:organization_id])
+    return render json: status_404, status: 404 if @organization.blank?
+  end
 
   def channel_params
     params.fetch(:channel, {}).permit(

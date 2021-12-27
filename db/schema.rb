@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_001021) do
     t.string "apply_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_channels_on_organization_id"
   end
 
   create_table "organization_recruiters", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -59,6 +61,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_001021) do
     t.integer "status", default: 10
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_positions_on_organization_id"
   end
 
   create_table "recruiters", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -103,6 +107,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_001021) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_recruitment_projects_on_organization_id"
   end
 
   create_table "recruitment_selections", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|

@@ -5,13 +5,15 @@ Rails.application.routes.draw do
   namespace 'auth' do
     resource :recruiter, only: %i[show]
   end
-  resources :recruiters, only: %i[index]
-  resources :positions, only: %i[index create update]
-  resources :channels, only: %i[index create update]
-  resources :recruitment_selections, only: %i[index]
+  scope '/:organization_id' do
+    resources :recruiters, only: %i[index]
+    resources :positions, only: %i[index create update]
+    resources :channels, only: %i[index create update]
+    resources :recruitment_selections, only: %i[index]
+    resources :analytics, only: %i[index]
+  end
   resources :recruitment_histories, only: %i[update]
   resources :candidates, only: %i[create update] do
     resource :position, only: %i[update], module: :candidates
   end
-  resources :analytics, only: %i[index]
 end

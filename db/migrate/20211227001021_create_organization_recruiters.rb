@@ -6,5 +6,9 @@ class CreateOrganizationRecruiters < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_reference :positions, :organization, index: true
+    add_reference :channels, :organization, index: true
+    add_reference :recruitment_projects, :organization, index: true
   end
 end

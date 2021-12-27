@@ -1,5 +1,6 @@
-Channel.seed_once do |m|
-  m.id = 1
-  m.name = "Green"
-  m.category = :ad
+Channel.seed_once do |c|
+  c.id = 1
+  c.name = "Green"
+  c.category = :ad
+  c.organization_id = 1
 end

@@ -2,14 +2,16 @@
 #
 # Table name: recruitment_projects
 #
-#  id         :bigint           not null, primary key
-#  name       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint           not null, primary key
+#  name            :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  organization_id :bigint
 #
 class RecruitmentProject < ApplicationRecord
   has_many :recruitment_selections, -> { order(:position) }, dependent: :destroy
   has_many :recruitment_histories, through: :recruitment_selections
+  belongs_to :organization
 
   # グラフ関連のテストを書き忘れないように
   def chart_labels

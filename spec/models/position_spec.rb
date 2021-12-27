@@ -4,13 +4,13 @@
 #
 # Table name: positions
 #
-#  id            :bigint           not null, primary key
-#  internal_name :string(255)
-#  external_name :string(255)
-#  status        :integer          default("open")
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#
+#  id              :bigint           not null, primary key
+#  internal_name   :string(255)
+#  external_name   :string(255)
+#  status          :integer          default("open")
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  organization_id :bigint
 #
 require "rails_helper"
 
