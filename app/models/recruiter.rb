@@ -34,5 +34,8 @@ class Recruiter < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  has_many :organization_recruiters, dependent: :destroy
+  has_many :organizations, through: :organization_recruiters
+
   enum role: { viewer: 10, interviewer: 20, admin: 30 }, _prefix: true
 end

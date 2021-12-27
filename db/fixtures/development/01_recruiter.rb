@@ -6,6 +6,7 @@ Recruiter.seed_once do |r|
   r.password = 'password'
   r.role = :admin
   r.level = 3
+  r.organization_ids = [1]
 end
 
 Recruiter.seed_once do |r|
@@ -16,6 +17,7 @@ Recruiter.seed_once do |r|
   r.password = 'password'
   r.role = :interviewer
   r.level = 2
+  r.organization_ids = [1]
 end
 
 Recruiter.seed_once do |r|
@@ -26,4 +28,5 @@ Recruiter.seed_once do |r|
   r.password = 'password'
   r.role = :viewer
   r.level = 1
+  r.organization_ids = [1]
 end
