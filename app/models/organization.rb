@@ -11,6 +11,7 @@
 class Organization < ApplicationRecord
   has_many :organization_recruiters, dependent: :destroy
   has_many :recruiters, through: :organization_recruiters
+  has_many :recruiter_invitations, dependent: :destroy
   has_many :channels, dependent: :destroy
   has_many :positions, dependent: :destroy
   has_many :recruitment_projects, dependent: :destroy

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   scope '/:organization_id' do
     resources :recruiters, only: %i[index]
+    resources :recruiter_invitations, only: %i[index create]
     resources :positions, only: %i[index create update]
     resources :channels, only: %i[index create update]
     resources :recruitment_selections, only: %i[index]

@@ -34,7 +34,7 @@ services:
     depends_on:
       - mysql
 
-  smpt:
+  smtp:
     image: schickling/mailcatcher
     ports:
       - "1080:1080"
