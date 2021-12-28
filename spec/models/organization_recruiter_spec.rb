@@ -3,6 +3,7 @@
 # Table name: organization_recruiters
 #
 #  id              :bigint           not null, primary key
+#  role            :integer
 #  organization_id :bigint           not null
 #  recruiter_id    :bigint           not null
 #  created_at      :datetime         not null

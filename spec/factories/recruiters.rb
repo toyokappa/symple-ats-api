@@ -18,7 +18,6 @@
 #  nickname               :string(255)
 #  image                  :string(255)
 #  email                  :string(255)
-#  role                   :integer
 #  level                  :integer          default(1)
 #  tokens                 :text(65535)
 #  created_at             :datetime         not null
