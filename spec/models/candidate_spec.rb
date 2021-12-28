@@ -22,7 +22,7 @@ RSpec.describe Candidate, type: :model do
     end
   end
 
-  describe "before_save" do
+  describe "after_commit" do
     let!(:project) { create(:recruitment_project) }
     let!(:selections) { create_list(:recruitment_selection, 3, recruitment_project: project, selection_type: :interview) }
     
