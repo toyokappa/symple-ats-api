@@ -14,4 +14,7 @@ class Position < ApplicationRecord
   belongs_to :organization
 
   enum status: { open: 10, close: 20 }, _prefix: true
+
+  validates :internal_name, presence: true
+  validates :external_name, presence: true
 end

@@ -17,5 +17,6 @@ FactoryBot.define do
     sequence(:internal_name) {|n| "ポジション#{n}" }
     sequence(:external_name) {|n| "エンジニアポジション#{n}" }
     status { [10, 20].sample }
+    organization
   end
 end

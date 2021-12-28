@@ -21,4 +21,22 @@ RSpec.describe Position, type: :model do
       expect(position).to be_valid
     end
   end
+
+  context "internal_nameが空の場合" do
+    let(:position) { build(:position, internal_name: nil) }
+
+    it "無効である" do
+      expect(position).to be_invalid
+      expect(position.errors[:internal_name]).to include("を入力してください")
+    end
+  end
+
+  context "external_nameが空の場合" do
+    let(:position) { build(:position, external_name: nil) }
+
+    it "無効である" do
+      expect(position).to be_invalid
+      expect(position.errors[:external_name]).to include("を入力してください")
+    end
+  end
 end
