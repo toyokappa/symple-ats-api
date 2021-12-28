@@ -14,7 +14,7 @@
 FactoryBot.define do
   factory :recruiter_invitation do
     email { "MyString" }
-    role { 1 }
+    role { [10, 20, 30].sample }
     token { "MyString" }
     expired_at { "2021-12-27 10:13:16" }
   end

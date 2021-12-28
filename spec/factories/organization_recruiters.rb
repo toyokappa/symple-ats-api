@@ -13,5 +13,6 @@ FactoryBot.define do
   factory :organization_recruiter do
     organization { nil }
     recruiter { nil }
+    role { [10, 20, 30].sample }
   end
 end

@@ -15,4 +15,8 @@ class Organization < ApplicationRecord
   has_many :channels, dependent: :destroy
   has_many :positions, dependent: :destroy
   has_many :recruitment_projects, dependent: :destroy
+
+  UNIQUE_ID_FMT = /\A[a-z0-9\-_]+\z/
+  validates :name, presence: true
+  validates :unique_id, presence: true, format: { with: UNIQUE_ID_FMT, allow_blank: true }, uniqueness: { case_sensitive: false }
 end

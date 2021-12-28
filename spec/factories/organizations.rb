@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :organization do
-    name { "MyString" }
-    unique_id { "MyString" }
+    sequence(:name) {|n| "シンプル#{n}株式会社" }
+    sequence(:unique_id) {|n| "sym_ple-#{n}" }
   end
 end

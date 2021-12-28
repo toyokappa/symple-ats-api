@@ -29,7 +29,6 @@ FactoryBot.define do
     sequence(:nickname) {|n| "recruiter#{n}" }
     sequence(:email) {|n| "recruiter#{n}@symple.com" }
     password { "123456" }
-    role { [10, 20, 30].sample }
     level { [*1..3].sample }
   end
 end
