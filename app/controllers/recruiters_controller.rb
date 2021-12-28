@@ -4,7 +4,7 @@ class RecruitersController < ApplicationController
   def index
     # TODO: Pagingについて考える
     recruiters = @organization.recruiters.all
-    render json: RecruiterBlueprint.render(recruiters, view: :normal)
+    render json: RecruiterBlueprint.render(recruiters, view: :normal, current_org: @organization)
   end
 
   private

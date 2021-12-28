@@ -33,7 +33,6 @@ class DeviseTokenAuthCreateRecruiters < ActiveRecord::Migration[6.1]
       t.string :nickname
       t.string :image
       t.string :email
-      t.integer :role
       t.integer :level, default: 1
 
       ## Tokens

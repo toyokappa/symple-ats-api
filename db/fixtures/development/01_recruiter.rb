@@ -4,9 +4,7 @@ Recruiter.seed_once do |r|
   r.nickname = 'toyokawa'
   r.email = 'toyokawa@symple.com'
   r.password = 'password'
-  r.role = :admin
   r.level = 3
-  r.organization_ids = [1, 2]
 end
 
 Recruiter.seed_once do |r|
@@ -15,9 +13,7 @@ Recruiter.seed_once do |r|
   r.nickname = 'tanaka'
   r.email = 'tanaka@symple.com'
   r.password = 'password'
-  r.role = :interviewer
   r.level = 2
-  r.organization_ids = [1]
 end
 
 Recruiter.seed_once do |r|
@@ -26,7 +22,5 @@ Recruiter.seed_once do |r|
   r.nickname = 'yamada'
   r.email = 'yamada@symple.com'
   r.password = 'password'
-  r.role = :viewer
   r.level = 1
-  r.organization_ids = [1]
 end

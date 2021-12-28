@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_101316) do
   end
 
   create_table "organization_recruiters", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.integer "role"
     t.bigint "organization_id", null: false
     t.bigint "recruiter_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -93,7 +94,6 @@ ActiveRecord::Schema.define(version: 2021_12_27_101316) do
     t.string "nickname"
     t.string "image"
     t.string "email"
-    t.integer "role"
     t.integer "level", default: 1
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false

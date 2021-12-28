@@ -8,6 +8,6 @@ class Auth::RecruitersController < ApplicationController
 
     return render json: status_404, status: 404 if organization.blank?
 
-    render json: RecruiterBlueprint.render(current_recruiter, view: :with_organization, selected_organization: organization)
+    render json: RecruiterBlueprint.render(current_recruiter, view: :with_organization, current_org: organization)
   end
 end

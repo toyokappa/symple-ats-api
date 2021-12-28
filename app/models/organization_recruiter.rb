@@ -11,4 +11,6 @@
 class OrganizationRecruiter < ApplicationRecord
   belongs_to :organization
   belongs_to :recruiter
+
+  enum role: { viewer: 10, interviewer: 20, admin: 30 }, _prefix: true
 end

@@ -37,5 +37,7 @@ class Recruiter < ActiveRecord::Base
   has_many :organization_recruiters, dependent: :destroy
   has_many :organizations, through: :organization_recruiters
 
-  enum role: { viewer: 10, interviewer: 20, admin: 30 }, _prefix: true
+  def role(organization)
+    organization_recruiters.find_by(organization: organization).role
+  end
 end
