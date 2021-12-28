@@ -34,4 +34,14 @@ RSpec.describe Recruiter, type: :model do
       expect(recruiter).to be_valid
     end
   end
+
+  describe "#role" do
+    let(:organization) { create(:organization) }
+    let(:recruiter) { create(:recruiter) }
+    let!(:organization_recruiter) { create(:organization_recruiter, organization: organization, recruiter: recruiter, role: :admin) }
+
+    it "該当の組織の権限が返却される" do
+      expect(recruiter.role(organization)).to eq 'admin'
+    end
+  end
 end
