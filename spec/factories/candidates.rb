@@ -14,7 +14,7 @@
 #
 FactoryBot.define do
   factory :candidate do
-    sequence(:name) {|n| "プロジェクト#{n}" }
+    sequence(:name) {|n| "田中 太郎#{n}" }
     recruitment_selection
     recruiter
     channel

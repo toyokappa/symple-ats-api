@@ -11,5 +11,6 @@
 FactoryBot.define do
   factory :recruitment_project do
     sequence(:name) {|n| "プロジェクト#{n}" }
+    organization
   end
 end

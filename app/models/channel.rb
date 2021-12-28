@@ -16,4 +16,7 @@ class Channel < ApplicationRecord
 
   enum category: { agent: 10, ad: 20, scout: 30, sns: 40, referral: 50, other: 60 }, _prefix: true
   enum automation: { disable: 10, enable: 20, impossible: 30 }, _prefix: true
+
+  validates :name, presence: true
+  validates :category, presence: true
 end
