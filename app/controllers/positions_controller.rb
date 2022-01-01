@@ -15,7 +15,6 @@ class PositionsController < ApplicationController
       render json: PositionBlueprint.render(position, view: :normal)
     else
       render json: status_400, status: 400
-      render json: { status: 400, message: '入力エラーです' }, status: 400
     end
   end
 
