@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'Recruiter', at: 'auth'
+  mount_devise_token_auth_for 'Recruiter', at: 'auth', controllers: {
+    registrations: 'auth/registrations'
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace 'auth' do
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
   scope '/:organization_id' do
     resources :recruiters, only: %i[index]
     resources :recruiter_invitations, only: %i[index create]
+    resources :organization_recruiters, only: %i[create]
     resources :positions, only: %i[index create update]
     resources :channels, only: %i[index create update]
     resources :recruitment_selections, only: %i[index]

@@ -17,4 +17,18 @@ RSpec.describe RecruitmentProject, type: :model do
       expect(project).to be_valid
     end
   end
+
+  describe "chart" do
+    describe "#chart_labels" do
+    end
+
+    describe "#chart_values" do
+    end
+
+    describe "#chart_datasets" do
+    end
+
+    describe "#chart_data" do
+    end
+  end
 end

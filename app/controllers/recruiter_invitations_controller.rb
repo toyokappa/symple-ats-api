@@ -1,4 +1,5 @@
 class RecruiterInvitationsController < ApplicationController
+  skip_before_action :authenticate_recruiter!, only: %i[show]
   before_action :find_organization
 
   def index
@@ -11,18 +12,8 @@ class RecruiterInvitationsController < ApplicationController
     invitation = @organization.recruiter_invitations.find_by(token: params[:token])
     return render json: status_404, status: 404 if invitation.blank?
 
-    if current_recruiter.email == invitation.email
-      ActiveRecord::Base.transaction do
-        @organization.organization_recruiters.create!(
-          recruiter: current_recruiter,
-          role: invitation.role
-        )
-        invitation.destroy!
-      end
-      render json: RecruiterBlueprint.render(current_recruiter, view: :with_organization, current_org: @organization)
-    else
-      render json: status_401, status: 401
-    end
+    recruiter = Recruiter.find_by(email: invitation.email)
+    render json: RecruiterInvitationBlueprint.render(invitation, view: :normal, root: :invitation, meta: { recruiterExists: recruiter.present? })
   end
 
   def create
