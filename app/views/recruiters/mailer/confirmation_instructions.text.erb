@@ -1,0 +1,15 @@
+<%= @resource.name %>さま
+
+TheATSをご利用いただきありがとうございます。
+
+<% if @resource.unconfirmed_email.blank? %>
+  アカウント登録を完了するには以下のURLをクリックしてください。
+  <%= confirmation_url(@resource, confirmation_token: @token) %>
+
+  このURLの有効期限は24時間です。
+<% else @resource.unconfirmed_email.blank? %>
+  メールアドレスの変更を完了するには以下のURLをクリックしてください。
+  <%= confirmation_url(@resource, confirmation_token: @token) %>
+
+  このURLの有効期限は24時間です。
+<% end %>
