@@ -2,7 +2,7 @@ class RecruiterBlueprint < Blueprinter::Base
   identifier :id
 
   view :normal do
-    fields :nickname, :email, :level
+    fields :name, :nickname, :email
     field :role do |recruiter, options|
       recruiter.role(options[:current_org])
     end
