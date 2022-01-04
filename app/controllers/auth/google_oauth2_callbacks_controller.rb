@@ -9,7 +9,7 @@ class Auth::GoogleOauth2CallbacksController < ApplicationController
         google_access_token: auth.credentials.token,
         google_refresh_token: auth.credentials.refresh_token,
       )
-      render json: RecruiterBlueprint.render(recruiter, view: :normal)
+      render status: 200
     else
       render json: status_400, status: 400
     end
