@@ -39,4 +39,8 @@ class Recruiter < ActiveRecord::Base
   def role(organization)
     organization_recruiters.find_by(organization: organization).role
   end
+
+  def google_authenticated
+    google_access_token.present?
+  end
 end

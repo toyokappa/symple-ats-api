@@ -27,7 +27,8 @@ services:
       BASIC_USER: user
       BASIC_PASS: pass
       MANUAL: $MANUAL
-      GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS
+      GOOGLE_CLIENT_ID: $GOOGLE_CLIENT_ID
+      GOOGLE_CLIENT_SECRET: $GOOGLE_CLIENT_SECRET
     ports:
       - "7700:3000"
     command: /usr/src/app/bin/start_dev_server.sh

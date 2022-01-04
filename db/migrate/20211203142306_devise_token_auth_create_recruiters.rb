@@ -37,6 +37,8 @@ class DeviseTokenAuthCreateRecruiters < ActiveRecord::Migration[6.1]
 
       ## Tokens
       t.text :tokens
+      t.string :google_access_token
+      t.string :google_refresh_token
 
       t.timestamps
     end

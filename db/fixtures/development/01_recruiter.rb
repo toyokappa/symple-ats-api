@@ -5,6 +5,7 @@ Recruiter.seed_once do |r|
   r.email = 'toyokawa@symple.com'
   r.password = 'password'
   r.level = 3
+  r.confirmed_at = Time.zone.now
 end
 
 Recruiter.seed_once do |r|
@@ -14,6 +15,7 @@ Recruiter.seed_once do |r|
   r.email = 'tanaka@symple.com'
   r.password = 'password'
   r.level = 2
+  r.confirmed_at = Time.zone.now
 end
 
 Recruiter.seed_once do |r|
@@ -23,4 +25,5 @@ Recruiter.seed_once do |r|
   r.email = 'yamada@symple.com'
   r.password = 'password'
   r.level = 1
+  r.confirmed_at = Time.zone.now
 end

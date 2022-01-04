@@ -13,6 +13,7 @@ gem 'rack-cors'
 
 gem 'devise_token_auth'
 gem 'acts_as_list'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem 'seed-fu'
