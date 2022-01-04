@@ -110,6 +110,8 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
+    faraday_middleware (1.2.0)
+      faraday (~> 1.0)
     ffi (1.15.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -262,6 +264,8 @@ DEPENDENCIES
   byebug
   devise_token_auth
   factory_bot_rails
+  faraday
+  faraday_middleware
   listen (~> 3.3)
   mysql2 (~> 0.5)
   omniauth-google-oauth2

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace 'auth' do
     resource :recruiter, only: %i[show]
+    post '/google/callback', to: 'google_oauth2_callbacks#create'
   end
-  get '/omniauth/google_oauth2/callback', to: 'auth/google_oauth2_callbacks#create'
   scope '/:organization_id' do
     resources :recruiters, only: %i[index]
     resources :recruiter_invitations, only: %i[index create]
