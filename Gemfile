@@ -16,6 +16,7 @@ gem 'acts_as_list'
 gem 'omniauth-google-oauth2'
 gem 'faraday'
 gem 'faraday_middleware'
+gem 'google-apis-calendar_v3'
 
 group :development, :test do
   gem 'seed-fu'

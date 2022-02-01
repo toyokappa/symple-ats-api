@@ -15,4 +15,8 @@ class RecruiterBlueprint < Blueprinter::Base
       options[:current_org]
     end
   end
+
+  view :only_schedules do
+    field :schedules
+  end
 end
