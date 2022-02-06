@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_101316) do
+ActiveRecord::Schema.define(version: 2022_02_06_053724) do
 
   create_table "candidates", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
@@ -106,6 +106,18 @@ ActiveRecord::Schema.define(version: 2021_12_27_101316) do
     t.index ["uid", "provider"], name: "index_recruiters_on_uid_and_provider", unique: true
   end
 
+  create_table "recruitment_evaluations", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "recruitment_history_id", null: false
+    t.bigint "recruiter_id", null: false
+    t.integer "result"
+    t.datetime "input_at"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recruiter_id"], name: "index_recruitment_evaluations_on_recruiter_id"
+    t.index ["recruitment_history_id"], name: "index_recruitment_evaluations_on_recruitment_history_id"
+  end
+
   create_table "recruitment_histories", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "selected_at"
     t.integer "result"
@@ -139,6 +151,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_101316) do
   add_foreign_key "organization_recruiters", "organizations"
   add_foreign_key "organization_recruiters", "recruiters"
   add_foreign_key "recruiter_invitations", "organizations"
+  add_foreign_key "recruitment_evaluations", "recruiters"
+  add_foreign_key "recruitment_evaluations", "recruitment_histories"
   add_foreign_key "recruitment_histories", "candidates"
   add_foreign_key "recruitment_histories", "recruitment_selections"
   add_foreign_key "recruitment_selections", "recruitment_projects"

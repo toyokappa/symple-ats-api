@@ -11,6 +11,7 @@
 #  updated_at               :datetime         not null
 #
 class RecruitmentHistory < ApplicationRecord
+  has_many :recruitment_evaluations, dependent: :destroy
   belongs_to :recruitment_selection
   belongs_to :candidate
 

@@ -37,6 +37,7 @@ class Recruiter < ActiveRecord::Base
 
   has_many :organization_recruiters, dependent: :destroy
   has_many :organizations, through: :organization_recruiters
+  has_many :recruitment_evaluations, dependent: :destroy
 
   def role(organization)
     organization_recruiters.find_by(organization: organization).role
