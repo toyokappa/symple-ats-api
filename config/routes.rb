@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :analytics, only: %i[index]
     get "/recruiter_invitations/:token", to: "recruiter_invitations#show"
   end
-  resources :recruitment_histories, only: %i[update]
+  resources :recruitment_histories, only: %i[update] do
+    resources :recruitment_evaluations, only: %i[create update]
+  end
   resources :candidates, only: %i[create update] do
     resource :position, only: %i[update], module: :candidates
   end
