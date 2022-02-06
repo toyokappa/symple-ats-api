@@ -2,7 +2,7 @@ class RecruiterBlueprint < Blueprinter::Base
   identifier :id
 
   view :normal do
-    fields :name, :nickname, :email, :google_authenticated
+    fields :name, :nickname, :email, :google_authenticated, :google_oauth2_email
     field :role do |recruiter, options|
       recruiter.role(options[:current_org])
     end

@@ -306,6 +306,7 @@ DEPENDENCIES
   faraday
   faraday_middleware
   google-apis-calendar_v3
+  jwt
   listen (~> 3.3)
   mysql2 (~> 0.5)
   omniauth-google-oauth2

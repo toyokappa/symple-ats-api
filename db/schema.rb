@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2022_02_06_053724) do
     t.text "tokens"
     t.string "google_access_token"
     t.string "google_refresh_token"
+    t.string "google_oauth2_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_recruiters_on_confirmation_token", unique: true

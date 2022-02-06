@@ -67,25 +67,13 @@ class Recruiter < ActiveRecord::Base
     end
   end
 
-  def create_event(event_params)
+  def create_event(new_event)
     secrets = google_client_secret
-
-    start_time = Google::Apis::CalendarV3::EventDateTime.new(
-      date_time: Time.zone.parse(event_params[:start]).xmlschema,
-    )
-    end_time = Google::Apis::CalendarV3::EventDateTime.new(
-      date_time: Time.zone.parse(event_params[:end]).xmlschema,
-    )
-    new_event = Google::Apis::CalendarV3::Event.new(
-      summary: event_params[:summary],
-      start: start_time,
-      end: end_time,
-    )
-
     cal_service = google_calendar_service(secrets)
     cal_service.insert_event(
       'primary',
       new_event,
+      conference_data_version: 1,
     )
   end
 
