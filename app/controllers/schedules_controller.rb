@@ -12,6 +12,7 @@ class SchedulesController < ApplicationController
   def update
     recruiters = @history.recruiters
     recruiters.each {|recruiter| recruiter.create_event(event_params) }
+    @history.update(selected_at: event_params[:start])
     # 日程調整完了の旨のメールを面接官、候補者の両者へ送信する
   end
 
