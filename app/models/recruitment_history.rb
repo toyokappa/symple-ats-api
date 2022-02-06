@@ -12,6 +12,7 @@
 #
 class RecruitmentHistory < ApplicationRecord
   has_many :recruitment_evaluations, dependent: :destroy
+  has_many :recruiters, through: :recruitment_evaluations
   belongs_to :recruitment_selection
   belongs_to :candidate
 
