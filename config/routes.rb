@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :candidates, only: %i[create update] do
     resource :position, only: %i[update], module: :candidates
   end
-  resources :schedules, only: %i[index]
+  resources :schedules, only: %i[index create]
 
   mount_devise_token_auth_for 'Recruiter', at: 'auth', controllers: {
     registrations: 'auth/registrations'

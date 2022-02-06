@@ -78,6 +78,37 @@ class Recruiter < ActiveRecord::Base
     get_vacant_times(bit_data)
   end
 
+  def create_event(event_params)
+    secrets = Google::APIClient::ClientSecrets.new(
+      web: {
+        client_id: ENV['GOOGLE_CLIENT_ID'],
+        client_secret: ENV['GOOGLE_CLIENT_SECRET'],
+        access_token: google_access_token,
+        refresh_token: google_refresh_token,
+      }
+    )
+
+    start_time = Google::Apis::CalendarV3::EventDateTime.new(
+      date_time: Time.zone.parse(event_params[:start]).xmlschema,
+    )
+    end_time = Google::Apis::CalendarV3::EventDateTime.new(
+      date_time: Time.zone.parse(event_params[:end]).xmlschema,
+    )
+    new_event = Google::Apis::CalendarV3::Event.new(
+      summary: event_params[:summary],
+      start: start_time,
+      end: end_time,
+    )
+
+    cal_service = Google::Apis::CalendarV3::CalendarService.new
+    cal_service.authorization = secrets.to_authorization
+    cal_service.authorization.refresh!
+    cal_service.insert_event(
+      'primary',
+      new_event,
+    )
+  end
+
   DAY_START = 9.hours
   DAY_END = 19.hours
 
