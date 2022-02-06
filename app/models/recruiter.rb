@@ -46,6 +46,7 @@ class Recruiter < ActiveRecord::Base
     google_access_token.present?
   end
 
+  # TODO: サービスクラスに切り出すなどして要リファクタリング
   def schedules
     secrets = Google::APIClient::ClientSecrets.new(
       web: {
@@ -73,8 +74,12 @@ class Recruiter < ActiveRecord::Base
         end: item.end,
       }
     end
-    change_schedule_to_bit(busy_times)
+    bit_data = change_schedule_to_bit(busy_times)
+    get_vacant_times(bit_data)
   end
+
+  DAY_START = 9.hours
+  DAY_END = 19.hours
 
   def change_schedule_to_bit(busy_times)
     schedule_bit_data = {}
@@ -94,8 +99,8 @@ class Recruiter < ActiveRecord::Base
     event_end = busy_time[:end].to_i
     date = busy_time[:start].to_date
 
-    day_start = (date.in_time_zone + 8.hours).to_i
-    day_end = (date.in_time_zone + 20.hours).to_i
+    day_start = (date.in_time_zone + DAY_START).to_i
+    day_end = (date.in_time_zone + DAY_END).to_i
 
     # 30分ごと
     segment_count = (day_end - day_start) / 60 / 60 * 2
@@ -128,5 +133,41 @@ class Recruiter < ActiveRecord::Base
         '1'
       end
     end.join
+  end
+
+  def get_vacant_times(schedule_bit_data)
+    vacant_times = []
+    schedule_bit_data.each do |date, bit_data|
+      day_start = (Time.zone.parse(date) + DAY_START).to_i
+      day_end = (Time.zone.parse(date) + DAY_END).to_i
+      day_pointer = day_start
+      vacant_time_start, vacant_time_end = nil
+
+      bit_data.split('').each do |bit|
+        if bit == '0' && vacant_time_start.nil?
+          vacant_time_start = day_pointer
+          day_pointer += 1800
+        elsif bit == '0' && vacant_time_start.present? && day_pointer < day_end - 1800
+          day_pointer += 1800
+        elsif bit == '1' && vacant_time_start.present?
+          vacant_time_end = day_pointer
+          # 予定が30分より多い場合に空き日程として追加
+          if (vacant_time_end - vacant_time_start) > 1800
+            vacant_times << { start: Time.zone.at(vacant_time_start), end: Time.zone.at(vacant_time_end) }
+          end
+          vacant_time_start, vacant_time_end = nil
+          day_pointer += 1800
+        elsif bit == '1' && vacant_time_start.nil?
+          day_pointer += 1800
+        elsif bit == '0' && day_pointer === day_end - 1800 && vacant_time_start.present?
+          vacant_time_end = day_pointer + 1800
+          if (vacant_time_end - vacant_time_start) > 1800
+            vacant_times << { start: Time.zone.at(vacant_time_start), end: Time.zone.at(vacant_time_end) }
+          end
+          vacant_time_start, vacant_time_end = nil
+        end
+      end
+    end
+    vacant_times
   end
 end
