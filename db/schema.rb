@@ -121,10 +121,12 @@ ActiveRecord::Schema.define(version: 2022_02_06_053724) do
   create_table "recruitment_histories", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "selected_at"
     t.integer "result"
+    t.string "auto_scheduling_token"
     t.bigint "recruitment_selection_id", null: false
     t.bigint "candidate_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["auto_scheduling_token"], name: "index_recruitment_histories_on_auto_scheduling_token", unique: true
     t.index ["candidate_id"], name: "index_recruitment_histories_on_candidate_id"
     t.index ["recruitment_selection_id"], name: "index_recruitment_histories_on_recruitment_selection_id"
   end
