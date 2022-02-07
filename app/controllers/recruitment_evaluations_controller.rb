@@ -4,7 +4,7 @@ class RecruitmentEvaluationsController < ApplicationController
   def create
     evaluation = @history.recruitment_evaluations.build(evaluation_params)
     if evaluation.save
-      render json: RecruitmentHistoryBlueprint.render(@history, view: :normal)
+      render json: RecruitmentEvaluationBlueprint.render(evaluation, view: :normal)
     else
       render json: status_400, status: 400
     end
