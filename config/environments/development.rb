@@ -39,6 +39,10 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'smtp', port: 1025 }
 
+  # TODO: 他の環境にも要設定
+  default_url_options[:protocol] = "http"
+  default_url_options[:host] = "localhost:7700"
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

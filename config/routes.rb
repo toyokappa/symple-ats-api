@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   resources :candidates, only: %i[create update] do
     resource :position, only: %i[update], module: :candidates
+    resources :resumes, only: %i[create destroy], module: :candidates
   end
   resources :schedules, only: %i[show update], param: :token
 

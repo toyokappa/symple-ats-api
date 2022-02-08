@@ -13,6 +13,8 @@
 #  updated_at               :datetime         not null
 #
 class Candidate < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   has_many :recruitment_histories, dependent: :destroy
   belongs_to :recruitment_selection
   belongs_to :recruiter, optional: true
@@ -20,9 +22,27 @@ class Candidate < ApplicationRecord
   belongs_to :position, optional: true
   has_one :recruitment_project, through: :recruitment_selection
 
+  has_many_attached :resumes
+
   acts_as_list scope: :recruitment_selection, column: :list_position
 
   after_commit :create_or_update_recruitment_histories
+
+  def resume_files
+    if resumes.attached?
+      resumes.map do |resume|
+        blob = resume.blob
+        {
+          id: resume.id,
+          name: blob.filename.to_s,
+          size: blob.byte_size,
+          url: url_for(resume),
+        }
+      end
+    else
+      []
+    end
+  end
 
   private
 

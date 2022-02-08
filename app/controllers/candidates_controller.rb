@@ -32,6 +32,7 @@ class CandidatesController < ApplicationController
       :recruiter_id,
       :channel_id,
       :position_id,
+      resumes: [],
     )
   end
 end
