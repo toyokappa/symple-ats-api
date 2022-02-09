@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :channels, only: %i[index create update]
     resources :recruitment_selections, only: %i[index]
     resources :analytics, only: %i[index]
+    resources :applies, only: %i[show], param: :token
     get "/recruiter_invitations/:token", to: "recruiter_invitations#show"
   end
   resources :recruitment_histories, only: %i[update] do
