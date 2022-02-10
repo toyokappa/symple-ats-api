@@ -26,6 +26,8 @@ class Candidate < ApplicationRecord
 
   acts_as_list scope: :recruitment_selection, column: :list_position
 
+  attr_accessor :agent_name, :agent_email, :description
+
   after_commit :create_or_update_recruitment_histories
 
   def resume_files

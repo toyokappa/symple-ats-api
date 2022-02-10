@@ -1,6 +1,4 @@
-class RecruiterInvitationMailer < ActionMailer::Base
-  default from: 'no-reply@symple.com'
-
+class RecruiterInvitationMailer < ApplicationMailer
   def invite_recruiter
     @invitation = params[:invitation]
     @url_base = "http://localhost:3000/#{@invitation.organization.unique_id}/recruiter_invitations/"
