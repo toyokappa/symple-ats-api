@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :recruiter_invitations, only: %i[index create]
     resources :organization_recruiters, only: %i[create]
     resources :positions, only: %i[index create update]
-    resources :channels, only: %i[index create update]
+    resources :channels, only: %i[index create update destroy]
     resources :recruitment_selections, only: %i[index]
     resources :analytics, only: %i[index]
     resources :applies, only: %i[show create], param: :token

@@ -30,6 +30,14 @@ class ChannelsController < ApplicationController
     end
   end
 
+  def destroy
+    channel = @organization.channels.find_by(id: params[:id])
+    return render json: status_404, status: 404 if channel.blank?
+
+    channel.destroy!
+    render json: ChannelBlueprint.render(channel, view: :normal)
+  end
+
   private
 
   def find_organization
