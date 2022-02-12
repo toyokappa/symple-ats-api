@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
   resources :recruitment_histories, only: %i[update] do
     resources :recruitment_evaluations, only: %i[create update destroy]
-    resource :auto_scheduling_token, only: %i[create]
+    resource :auto_scheduling_token, only: %i[create destroy]
   end
   resources :candidates, only: %i[create update destroy] do
     resource :position, only: %i[update], module: :candidates
