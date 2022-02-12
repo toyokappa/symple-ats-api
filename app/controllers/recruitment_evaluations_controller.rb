@@ -22,6 +22,14 @@ class RecruitmentEvaluationsController < ApplicationController
     end
   end
 
+  def destroy
+    evaluation = @history.recruitment_evaluations.find_by(id: params[:id])
+    return render json: status_404, status: 404 if evaluation.blank?
+
+    evaluation.destroy!
+    render json: RecruitmentEvaluationBlueprint.render(evaluation, view: :normal)
+  end
+
   private
 
   def find_history

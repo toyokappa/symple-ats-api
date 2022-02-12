@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get "/recruiter_invitations/:token", to: "recruiter_invitations#show"
   end
   resources :recruitment_histories, only: %i[update] do
-    resources :recruitment_evaluations, only: %i[create update]
+    resources :recruitment_evaluations, only: %i[create update destroy]
     resource :auto_scheduling_token, only: %i[create]
   end
   resources :candidates, only: %i[create update destroy] do
