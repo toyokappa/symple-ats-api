@@ -23,6 +23,14 @@ class CandidatesController < ApplicationController
     end
   end
 
+  def destroy
+    candidate = Candidate.find_by(id: params[:id])
+    return render json: status_404, status: 404 if candidate.blank?
+
+    candidate.destroy!
+    render json: CandidateBlueprint.render(candidate, view: :normal)
+  end
+
   private
 
   def candidate_params

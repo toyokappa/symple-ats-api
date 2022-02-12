@@ -28,7 +28,7 @@ class Candidate < ApplicationRecord
 
   attr_accessor :agent_name, :agent_email, :description
 
-  after_commit :create_or_update_recruitment_histories
+  after_commit :create_or_update_recruitment_histories, if: :persisted?
 
   def resume_files
     if resumes.attached?
