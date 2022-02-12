@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :recruiters, only: %i[index]
     resources :recruiter_invitations, only: %i[index create]
     resources :organization_recruiters, only: %i[create]
-    resources :positions, only: %i[index create update]
+    resources :positions, only: %i[index create update destroy]
     resources :channels, only: %i[index create update destroy]
     resources :recruitment_selections, only: %i[index]
     resources :analytics, only: %i[index]

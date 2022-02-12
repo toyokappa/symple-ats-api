@@ -30,6 +30,14 @@ class PositionsController < ApplicationController
     end
   end
 
+  def destroy
+    position = @organization.positions.find_by(id: params[:id])
+    return render json: status_404, status: 404 if position.blank?
+
+    position.destroy!
+    render json: PositionBlueprint.render(position, view: :normal)
+  end
+
   private
 
   def find_organization
