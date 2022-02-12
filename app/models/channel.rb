@@ -16,12 +16,33 @@ class Channel < ApplicationRecord
   delegate :unique_id, to: :organization, prefix: true
 
   enum category: { agent: 10, ad: 20, scout: 30, sns: 40, referral: 50, other: 60 }, _prefix: true
-  enum automation: { disable: 10, enable: 20, impossible: 30 }, _prefix: true
 
   validates :name, presence: true
   validates :category, presence: true
 
   before_save :generate_apply_token
+
+  def automation
+    case category.to_sym
+    when :agent
+      :enable
+    when :ad
+      :disable
+    when :scout
+      :disable
+    when :sns
+      :impossible
+    when :referal
+      :impossible
+    when :other
+      :impossible
+    end
+  end
+
+  def apply_token
+    return nil unless category_agent?
+    super
+  end
 
   private
 

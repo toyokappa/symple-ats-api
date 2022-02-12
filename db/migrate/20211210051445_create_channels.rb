@@ -3,7 +3,6 @@ class CreateChannels < ActiveRecord::Migration[6.1]
     create_table :channels do |t|
       t.string :name
       t.integer :category
-      t.integer :automation, default: 10, null: false
       t.string :apply_token
 
       t.timestamps

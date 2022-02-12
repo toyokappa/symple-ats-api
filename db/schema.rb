@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2022_02_08_090409) do
   create_table "channels", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.integer "category"
-    t.integer "automation", default: 10, null: false
     t.string "apply_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
