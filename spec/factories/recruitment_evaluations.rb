@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :recruitment_evaluation do
-    recruitment_history { nil }
-    recruiter { nil }
-    result { 1 }
-    input_at { "2022-02-06 05:37:27" }
-    description { "MyText" }
+    recruitment_history
+    recruiter
+    result { [10, 20].sample }
+    input_at { Time.current }
+    description { "良いと思います" }
   end
 end
