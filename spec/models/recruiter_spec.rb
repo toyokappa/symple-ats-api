@@ -44,4 +44,32 @@ RSpec.describe Recruiter, type: :model do
       expect(recruiter.role(organization)).to eq 'admin'
     end
   end
+
+  describe "#google_authenticated" do
+    let(:recruiter) { create :recruiter, google_access_token: token }
+
+    context "Googleの認証トークンが存在する場合" do
+      let(:token) { 'exists_google_access_token' }
+
+      it "trueを返す" do
+        expect(recruiter.google_authenticated).to eq true
+      end
+    end
+
+    context "Googleの認証トークンが存在しない場合" do
+      let(:token) { nil }
+
+      it "falseを返す" do
+        expect(recruiter.google_authenticated).to eq false
+      end
+    end
+  end
+
+  describe "#get_busy_times" do
+    # TODO: モックを作ってまでテストするかは一旦保留
+  end
+
+  describe "#create_event" do
+    # TODO: モックを作ってまでテストするかは一旦保留
+  end
 end
