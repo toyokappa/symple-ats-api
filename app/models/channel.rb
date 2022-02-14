@@ -32,7 +32,7 @@ class Channel < ApplicationRecord
       :disable
     when :sns
       :impossible
-    when :referal
+    when :referral
       :impossible
     when :other
       :impossible
