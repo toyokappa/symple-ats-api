@@ -17,7 +17,6 @@ FactoryBot.define do
   factory :channel do
     sequence(:name) {|n| "メディア#{n}" }
     category { [10, 20, 30, 40, 50, 60].sample }
-    automation { [10, 20, 30].sample }
     organization
   end
 end

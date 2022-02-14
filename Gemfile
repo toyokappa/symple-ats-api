@@ -8,6 +8,7 @@ gem 'mysql2', '~> 0.5'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'blueprinter'
+gem 'active_storage_validations'
 
 gem 'rack-cors'
 

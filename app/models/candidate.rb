@@ -24,6 +24,8 @@ class Candidate < ApplicationRecord
 
   has_many_attached :resumes
 
+  validates :resumes, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'application/pdf']
+
   acts_as_list scope: :recruitment_selection, column: :list_position
 
   attr_accessor :agent_name, :agent_email, :description
