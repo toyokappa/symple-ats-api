@@ -5,7 +5,7 @@ class RecruitmentHistoriesController < ApplicationController
     return render json: status_400, status: 400 if history_params.blank?
 
     if history.update(history_params)
-      render json: RecruitmentHistoryBlueprint.render(history, view: :normal)
+      render json: RecruitmentHistoryBlueprint.render(history, view: :with_candidate)
     else
       render json: status_400, status: 400
     end

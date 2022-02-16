@@ -18,6 +18,8 @@ class RecruitmentHistory < ApplicationRecord
 
   enum result: { pass: 10, failure: 20 }
 
+  after_commit :auto_update_failure_with_candidate, on: :update
+
   def update_auto_scheduling_token
     self.auto_scheduling_token = loop do
       tmp_token = SecureRandom.alphanumeric(24)
@@ -25,5 +27,13 @@ class RecruitmentHistory < ApplicationRecord
     end
 
     self.save
+  end
+
+  private
+
+  def auto_update_failure_with_candidate
+    if previous_changes['result']&.last&.to_sym == :failure
+      candidate.failure
+    end
   end
 end

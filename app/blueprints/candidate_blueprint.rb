@@ -5,4 +5,8 @@ class CandidateBlueprint < Blueprinter::Base
     fields :name, :recruitment_selection_id, :list_position, :recruiter_id, :channel_id, :position_id, :resume_files
     association :recruitment_histories, blueprint: RecruitmentHistoryBlueprint, view: :normal
   end
+
+  view :without_associations do
+    fields :name, :recruitment_selection_id, :list_position, :recruiter_id, :channel_id, :position_id, :resume_files
+  end
 end

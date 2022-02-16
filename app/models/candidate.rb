@@ -48,6 +48,11 @@ class Candidate < ApplicationRecord
     end
   end
 
+  def failure
+    failure_selection = recruitment_project.recruitment_selections.find_by(selection_type: :failure)
+    update(recruitment_selection: failure_selection)
+  end
+
   private
 
   def create_or_update_recruitment_histories
